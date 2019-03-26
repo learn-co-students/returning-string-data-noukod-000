@@ -5,6 +5,11 @@ class PostsController < ApplicationController
     @posts = Post.all
   end
 
+  def body
+    post = Post.find(params[:id])
+    render plain: post.description
+  end
+
   def show
   end
 
@@ -35,5 +40,9 @@ private
   # Never trust parameters from the scary internet, only allow the white list through.
   def post_params
     params.require(:post).permit(:title, :description)
+  end
+  def body
+    post = Post.find(params[:id])
+    render plain: post.description
   end
 end
